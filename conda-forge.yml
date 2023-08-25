@@ -7,9 +7,9 @@ channels:
 
 provider:
   linux: github_actions
-  osx: None
-  win: None
-  linux_aarch64: None
+  osx: github_actions
+  win: github_actions
+  linux_aarch64: github_actions
   linux_ppc64le: None
 
 github_actions:
