@@ -1,0 +1,37 @@
+{% set name = "drekar-launch-process-cpp" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name }}
+  version: v{{ version }}
+
+source:
+  git_url: https://github.com/johnwason/drekar-launch-process-cpp.git
+  git_rev: {{ version }}
+
+build:
+  number: 0
+
+requirements:
+  host:
+    - git
+    - cmake
+    - ninja  # [win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make  # [linux]
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/drekar_launch_process_cpp/drekar_launch_process_cpp.h  # [not win]
+    - if exist %PREFIX%\\Library\\include\\drekar_launch_process_cpp\\drekar_launch_process_cpp.h (exit 0) else (exit 1)  # [win]
+
+about:
+  home: https://github.com/johnwason/drekar-launch-process-cpp
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  summary: C++ client library for drekar-launch
+
+extra:
+  recipe-maintainers:
+    - johnwason
